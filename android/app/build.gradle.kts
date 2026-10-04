@@ -38,7 +38,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
     implementation("io.coil-kt:coil-compose:2.6.0")
-    implementation("com.google.android.play:billing-ktx:7.1.1")
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
     implementation("com.google.firebase:firebase-messaging-ktx:23.4.1")
     implementation("androidx.work:work-runtime-ktx:2.9.0")
     testImplementation("junit:junit:4.13.2")
