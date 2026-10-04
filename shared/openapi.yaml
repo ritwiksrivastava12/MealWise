@@ -1,0 +1,15 @@
+openapi: 3.0.3
+info: { title: MealWise API, version: 1.0.0 }
+servers: [{ url: https://api.mealwise.in/api/v1 }]
+paths:
+  /health: { get: { responses: { "200": { description: UP } } } }
+  /auth/register: { post: { responses: { "201": { description: created } } } }
+  /auth/login: { post: { responses: { "200": { description: tokens } } } }
+  /meals/search: { get: { parameters: [{ name: q, in: query }, { name: diet, in: query }, { name: maxMinutes, in: query }], responses: { "200": { description: page } } } }
+  /meals/{id}: { get: { responses: { "200": { description: scaled detail + estimated nutrition } } } }
+  /meals/{id}/availability: { post: { responses: { "200": { description: available/low/missing } } } }
+  /recommendations: { post: { responses: { "200": { description: meal + reason } } } }
+  /ai/chat: { post: { responses: { "200": { description: reply + actions }, "429": { description: quota }, "503": { description: provider unavailable } } } }
+  /commerce/handoff: { post: { responses: { "200": { description: handoffUrl + disclaimer } } } }
+  /subscriptions/verify: { post: { responses: { "200": { description: activated }, "503": { description: billing not configured } } } }
+  /payments/razorpay/webhook: { post: { responses: { "200": { description: verified } } } }

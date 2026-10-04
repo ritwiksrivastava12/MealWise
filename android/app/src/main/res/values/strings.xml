@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MealWise</string>
+    <!-- All UI copy lives here (localization-ready; en-IN default, INR formatting via NumberFormat). -->
+    <string name="home_title">What should I eat?</string>
+    <string name="ai_unavailable">MealWise AI isn\'t configured yet — no reply was faked.</string>
+    <string name="handoff_note">You\'re leaving MealWise. Prices and availability are controlled by the provider.</string>
+    <string name="nutrition_estimate">Estimate · general wellness only</string>
+</resources>

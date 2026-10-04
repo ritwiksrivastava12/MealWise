@@ -1,0 +1,23 @@
+server.error.include-message: never
+server.error.include-binding-errors: never
+spring:
+  application.name: mealwise-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/mealwise}
+    username: ${SPRING_DATASOURCE_USERNAME:mealwise}
+    password: ${SPRING_DATASOURCE_PASSWORD:change-me}
+  jpa:
+    hibernate.ddl-auto: validate
+    open-in-view: false
+    properties.hibernate.jdbc.time_zone: UTC
+  flyway: { enabled: true, locations: classpath:db/migration }
+  data.redis.host: ${SPRING_DATA_REDIS_HOST:localhost}
+management.endpoints.web.exposure.include: health,info,metrics
+mealwise:
+  jwt.secret: ${JWT_SECRET:?set JWT_SECRET}
+  commerce.sandbox.enabled: ${MEALWISE_COMMERCE_SANDBOX_ENABLED:false}
+  commerce.swiggy.enabled: ${MEALWISE_COMMERCE_SWIGGY_ENABLED:false}
+  commerce.ondc.enabled: ${MEALWISE_COMMERCE_ONDC_ENABLED:false}
+  ai.openrouter-key: ${OPENROUTER_API_KEY:}
+  ai.model-chat: ${AI_MODEL_CHAT:meta-llama/llama-3.1-8b-instruct:free}
+  ai.model-vision: ${AI_MODEL_VISION:qwen/qwen2-vl-72b-instruct}

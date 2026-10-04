@@ -1,0 +1,28 @@
+name: mealwise-ci
+on: { push: {}, pull_request: {} }
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres: { image: postgres:15-alpine, env: { POSTGRES_DB: mealwise, POSTGRES_USER: mealwise, POSTGRES_PASSWORD: ci }, ports: ["5432:5432"], options: --health-cmd="pg_isready -U mealwise" --health-interval=5s }
+      redis: { image: redis:7-alpine, ports: ["6379:6379"] }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "21" }
+      - uses: gradle/actions/setup-gradle@v3
+      - run: cd backend && gradle build --info
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "17" }
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v3
+      - run: cd android && gradle :app:assembleDebug :app:testDebugUnitTest --stacktrace
+  secrets-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gitleaks/gitleaks-action@v2

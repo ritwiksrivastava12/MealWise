@@ -1,0 +1,36 @@
+# Build outputs
+.gradle/
+build/
+out/
+*.class
+*.apk
+*.aab
+local.properties
+# Android
+android/.gradle/
+android/app/build/
+android/*/build/
+*.hprof
+# Backend
+backend/.gradle/
+backend/build/
+backend/bin/
+# Secrets — never commit
+.env
+infrastructure/.env
+**/service-account*.json
+**/*key*.json
+local.properties
+*.jks
+*.keystore
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+# Node / python
+node_modules/
+__pycache__/
+.venv/
+# Logs
+*.log
