@@ -66,7 +66,7 @@ public class Planner {
       var p = plans.findById(id).orElseThrow(() -> ApiException.notFound("Plan not found"));
       if (!p.getUserId().toString().equals(JwtFilter.userId())) throw ApiException.forbidden("Not yours");
       if (b.containsKey("status")) p.setStatus((String) b.get("status"));
-      if (b.containsKey("servings")) p.setServings((int) b.get("servings"));
+      if (b.containsKey("servings")) p.setServings(((Number) b.get("servings")).intValue());
       return plans.save(p);
     }
     @PostMapping("/history")

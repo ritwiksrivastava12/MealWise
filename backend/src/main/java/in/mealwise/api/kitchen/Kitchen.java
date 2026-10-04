@@ -69,7 +69,7 @@ public class Kitchen {
     public AvailabilityCtrl(ItemRepo i, IngredientRepository g, MealIngredientRepository l) { items = i; ings = g; links = l; }
     @PostMapping("/{mealId}/availability")
     public Map<String, Object> availability(@PathVariable UUID mealId, @RequestBody Map<String, Object> body) {
-      int servings = (int) body.getOrDefault("servings", 2);
+      int servings = ((Number) body.getOrDefault("servings", 2)).intValue();
       UUID u = UUID.fromString(JwtFilter.userId());
       var stock = new HashMap<UUID, Double>();
       items.findByUserId(u).forEach(it -> stock.merge(it.getIngredientId(), it.getQtyBase(), Double::sum));

@@ -46,7 +46,7 @@ public class MealController {
   @PostMapping("/scale")
   public Map<String, Object> scale(@RequestBody Map<String, Object> b) {
     UUID mealId = UUID.fromString((String) b.get("mealId"));
-    int servings = (int) b.get("servings");
+    int servings = ((Number) b.get("servings")).intValue();
     if (servings < 1 || servings > 20) throw ApiException.bad("BAD_SERVINGS", "Servings must be 1..20");
     return detail(mealId, servings);
   }
@@ -54,7 +54,7 @@ public class MealController {
   @PostMapping("/nutrition/calculate")
   public Map<String, Object> nutrition(@RequestBody Map<String, Object> b) {
     UUID mealId = UUID.fromString((String) b.get("mealId"));
-    int servings = (int) b.getOrDefault("servings", 2);
+    int servings = ((Number) b.getOrDefault("servings", 2)).intValue();
     var d = detail(mealId, servings);
     return Map.of("nutrition", d.get("nutrition"), "label", "estimated",
       "disclaimer", "General wellness estimate, not medical advice.");
