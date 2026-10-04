@@ -9,6 +9,7 @@ import java.util.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 

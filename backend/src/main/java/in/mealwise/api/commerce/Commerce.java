@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 // Provider-independent port. Core never branches on provider names.
-public interface CommerceProvider {
+interface CommerceProvider {
   String name();
   Set<String> capabilities();
   Map<String, Object> handoff(Map<String, Object> req);
